@@ -1,0 +1,99 @@
+﻿@model SecureAssetManager.Models.Risk
+
+@{
+    ViewData["Title"] = "Tratamiento de Riesgo";
+}
+
+<h2>Tratamiento de Riesgo </h2>
+
+<div class="form-group">
+    <label for="TipoControl">Selecciona un tipo de control:</label>
+    <select id="TipoControl" class="form-control">
+        <option value="">-- Selecciona un tipo de control --</option>
+        <option value="Control de Acceso">Control de Acceso</option>
+        <option value="Control de Seguridad Física">Control de Seguridad Física</option>
+        <option value="Control de Seguridad de Red">Control de Seguridad de Red</option>
+        <option value="Controles de Seguridad de Aplicaciones">Controles de Seguridad de Aplicaciones</option>
+        <option value="Controles de Seguridad de Datos">Controles de Seguridad de Datos</option>
+    </select>
+</div>
+
+<p>
+    <button type="button" class="btn btn-primary" onclick="mostrarTratamiento()">Aplicar</button>
+</p>
+
+<p>
+    <a asp-action="Index">Volver a la lista de Riesgos</a>
+</p>
+
+<div id="tratamientoResultado"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // Ensure jQuery is loaded before your script
+    window.jQuery || document.write('<script src="/path/to/local/jquery-3.6.4.min.js"><\/script>');
+
+    function mostrarTratamiento() {
+        var tipoControlSeleccionado = $("#TipoControl").val();
+        if (!tipoControlSeleccionado) {
+            alert("Selecciona un tipo de control válido.");
+            return;
+        }
+
+        var tratamiento = obtenerTratamiento(tipoControlSeleccionado);
+        $("#tratamientoResultado").html("Tratamiento: " + tratamiento);
+    }
+
+
+    function obtenerTratamiento(tipoControl) {
+        switch (tipoControl) {
+            case "Control de Acceso":
+                return `
+                            <ul>
+                                <li>Implementar autenticación multifactor para fortalecer el control de acceso.</li>
+                                <li>Establecer políticas de contraseñas robustas y obligar a su cambio periódico.</li>
+                                <li>Aplicar controles de acceso basados en roles para restringir privilegios de usuarios.</li>
+                                <li>Realizar auditorías periódicas de acceso para detectar comportamientos anómalos.</li>
+                                <li>Implementar bloqueo de cuentas después de múltiples intentos de inicio de sesión fallidos.</li>
+                            </ul>`;
+            case "Control de Seguridad Física":
+                return `
+                        <ul>
+                            <li>Instalar sistemas de cámaras de seguridad para monitorear áreas críticas.</li>
+                            <li>Establecer controles de acceso físico, como tarjetas magnéticas o lectores biométricos.</li>
+                            <li>Implementar sensores de intrusión para detectar actividad no autorizada.</li>
+                            <li>Realizar inspecciones regulares de las instalaciones para identificar vulnerabilidades físicas.</li>
+                            <li>Implementar medidas de seguridad ambiental, como sistemas contra incendios y control de temperatura.</li>
+                        </ul>`;
+            case "Control de Seguridad de Red":
+                return `
+                        <ul>
+                            <li>Configurar firewalls para filtrar tráfico no autorizado y prevenir intrusiones.</li>
+                            <li>Utilizar VPN para cifrar la comunicación entre ubicaciones remotas.</li>
+                            <li>Implementar sistemas de detección y prevención de intrusiones (IDPS).</li>
+                            <li>Actualizar regularmente firmware y software de dispositivos de red.</li>
+                            <li>Establecer políticas de seguridad de red para restringir el acceso a recursos sensibles.</li>
+                        </ul>`;
+            case "Controles de Seguridad de Aplicaciones":
+                return `
+                        <ul>
+                            <li>Realizar pruebas de seguridad, incluyendo análisis estático y dinámico del código.</li>
+                            <li>Aplicar principios de desarrollo seguro, como validación de entrada y escapado de salida.</li>
+                            <li>Implementar cortafuegos de aplicaciones web (WAF) para proteger contra ataques web.</li>
+                            <li>Monitorear y registrar eventos de seguridad en la aplicación.</li>
+                            <li>Actualizar regularmente las bibliotecas y frameworks utilizados en la aplicación.</li>
+                        </ul>`;
+            case "Controles de Seguridad de Datos":
+                return `
+                        <ul>
+                            <li>Encriptar datos sensibles tanto en reposo como en tránsito.</li>
+                            <li>Establecer políticas de clasificación de datos para controlar el acceso y manejo adecuado.</li>
+                            <li>Realizar copias de seguridad regulares y probar la restauración de datos.</li>
+                            <li>Implementar controles de acceso a nivel de base de datos para restringir consultas sensibles.</li>
+                            <li>Auditar y monitorear actividades relacionadas con datos sensibles.</li>
+                        </ul>`;
+            default:
+                return "Selecciona un tipo de control válido.";
+        }
+    }
+</script>

@@ -1,0 +1,368 @@
+﻿@model SecureAssetManager.Models.Asset
+
+@{
+    ViewData["Title"] = "Agregar Activo";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CodigoActivo" class="control-label"></label>
+                <input asp-for="CodigoActivo" class="form-control" />
+                <span asp-validation-for="CodigoActivo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Responsable" class="control-label"></label>
+                <select asp-for="Responsable" class="form-control">
+                    <option value="">-- Seleccione un Responsable --</option>
+                    @foreach (var user in ViewBag.Users as List<SecureAssetManager.Areas.Identity.Data.AppUser>)
+                    {
+                        <option value="@user.UserName">@($"{user.FirstName} {user.LastName} ({user.UserName})")</option>
+                    }
+                </select>
+                <span asp-validation-for="Responsable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ubicacion"></label>
+                <select asp-for="Ubicacion" class="form-control">
+                    <option value="">-- Seleccione una Ubicación --</option>
+                    <option value="Técnica">Técnica</option>
+                    <option value="Geográfica">Geográfica</option>
+                </select>
+                <span asp-validation-for="Ubicacion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <select asp-for="Tipo" class="form-control">
+                    <option value="">-- Seleccione --</option>
+                    <option value="Informacion">Informacion</option>
+                    <option value="Software">Software</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Activo_Fisico">Activo Fisico</option>
+                    <option value="Servicio">Servicio</option>
+                    <option value="Recurso_Humano">Recurso Humano</option>
+                </select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label"></label>
+                <select asp-for="Categoria" class="form-control" id="categoriaSelect">
+                    <option value="">-- Seleccione una opción --</option>
+                    <option value="arch">Arquitectura del sistema</option>
+                    <option value="D">Datos / Información</option>
+                    <option value="keys">Claves criptográficas</option>
+                    <option value="S">Servicios</option>
+                    <option value="SW">Aplicaciones (software)</option>
+                    <option value="HW">Equipamiento informático (hardware)</option>
+                    <option value="COM">Redes de comunicaciones</option>
+                    <option value="Media">Soportes de información</option>
+                    <option value="AUX">Equipamiento auxiliar</option>
+                    <option value="L">Instalaciones</option>
+                    <option value="P">Personal</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Clasificacion" class="control-label"></label>
+                <select asp-for="Clasificacion" class="form-control">
+                    <option value="Publico">Publico</option>
+                    <option value="Restringido">Restringido</option>
+                    <option value="Confidencial">Confidencial</option>
+                </select>
+                <span asp-validation-for="Clasificacion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EtiquetaPrincipal" class="control-label"></label>
+                <select asp-for="EtiquetaPrincipal" class="form-control" id="etiquetaPrincipalSelect">
+                    <option value="">-- Seleccione una opción --</option>
+                    <option value="sap">[sap] punto de [acceso al] servicio</option>
+                    <option value="ip">[ip] punto de interconexión</option>
+                    <option value="ext">[ext] proporcionado por terceros</option>
+                    <option value="files">[files] ficheros</option>
+                    <option value="backup">[backup] copias de respaldo</option>
+                    <option value="conf">[conf] datos de configuración</option>
+                    <option value="password">[password] credenciales</option>
+                    <option value="auth">[auth] datos de validación de credenciales</option>
+                    <option value="info">[info] protección de la información.</option>
+                    <option value="encrypt">[encrypt] claves de cifra</option>
+                    <option value="shared_secret">[shared_secret] secreto compartido</option>
+                    <option value="public_encryption">[public_encryption] clave pública de cifra</option>
+                    <option value="public_decryption">[public_decryption] clave privada de descifrado</option>
+                    <option value="anon">[anon] anónimo</option>
+                    <option value="pub">[pub] al público en general</option>
+                    <option value="ext">[ext] a usuarios externos</option>
+                    <option value="www">[www] world wide web</option>
+                    <option value="telnet">[telnet] acceso remoto a cuenta local</option>
+                    <option value="email">[email] correo electrónico</option>
+                    <option value="file">[file] almacenamiento de ficheros</option>
+                    <option value="prp">[prp] desarrollo propio</option>
+                    <option value="std">[std] estándar</option>
+                    <option value="browser">[browser] navegador web</option>
+                    <option value="www">[www] servidor de presentación.</option>
+                    <option value="app">[app] servidor de aplicaciones</option>
+                    <option value="email_client">[email_client] cliente de correo electrónico</option>
+                    <option value="email_server">[email_server] servidor de correo electrónico</option>
+                    <option value="host">[host] grandes equipos</option>
+                    <option value="pc">[pc] informática personal</option>
+                    <option value="mobile">[mobile] informática móvil</option>
+                    <option value="pda">[pda] agendas electrónicas</option>
+                    <option value="ipphone">[ipphone] teléfono IP</option>
+                    <option value="wifi">[wifi] red inalámbrica</option>
+                    <option value="mobile">[mobile] telefonía móvil</option>
+                    <option value="sat">[sat] por satélite</option>
+                    <option value="LAN">LAN] red local</option>
+                    <option value="MAN">[MAN] red metropolitana</option>
+                    <option value="Internet">[Internet] Internet</option>
+                    <option value="electronic">[electronic] electrónicos</option>
+                    <option value="disk">[disk] discos</option>
+                    <option value="vdisk">[vdisk] discos virtuales</option>
+                    <option value="cd">[cd] cederrón (CD-ROM)</option>
+                    <option value="usb">[usb] memorias USB</option>
+                    <option value="dvd">[dvd] DVD</option>
+                    <option value="power">[power] fuentes de alimentación</option>
+                    <option value="ups">[ups] sistemas de alimentación ininterrumpida</option>
+                    <option value="gen">[gen] generadores eléctricos</option>
+                    <option value="cabling">[cabling] cableado</option>
+                    <option value="wire">[wire] cable eléctrico</option>
+                    <option value="fiber">[fiber] fibra óptica</option>
+                    <option value="site">[site] recinto</option>
+                    <option value="building">[building] edificio</option>
+                    <option value="local">[local] cuarto</option>
+                    <option value="mobile">[mobile] plataformas móviles</option>
+                    <option value="car">[car] vehículo terrestre</option>
+                    <option value="plane">[plane] vehículo aéreo: avión</option>
+                    <option value="ship">[ship] vehículo marítimo</option>
+                    <option value="shelter">[shelter] contenedores</option>
+                    <option value="ue">[ue] usuarios externos</option>
+                    <option value="ui">[ui] usuarios internos</option>
+                    <option value="op">[op] operadores</option>
+                    <option value="adm">[adm] administradores de sistemas</option>
+                </select>
+                <span asp-validation-for="EtiquetaPrincipal" class="text-danger"></span>
+            </div>
+
+            <datalist id="valoracionList">
+
+                <option value="0">Despreciable</option>
+                <option value="1">Bajo</option>
+                <option value="2">Bajo</option>
+                <option value="3">Medio</option>
+                <option value="4">Medio</option>
+                <option value="5">Medio</option>
+                <option value="6">Alto</option>
+                <option value="7">Alto</option>
+                <option value="8">Alto</option>
+                <option value="9">Muy Alto</option>
+                <option value="10">Extremo</option>
+            </datalist>
+
+            <div class="form-group">
+                <label asp-for="ValoracionConfidencialidad" class="control-label"></label>
+                <input type="number" name="ValoracionConfidencialidad" min="0" max="10" step="1" list="valoracionList">
+                <span asp-validation-for="ValoracionConfidencialidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValoracionIntegridad" class="control-label"></label>
+                <input type="number" name="ValoracionIntegridad" min="0" max="10" step="1" list="valoracionList">
+                <span asp-validation-for="ValoracionIntegridad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValoracionDisponibilidad" class="control-label"></label>
+                <input type="number" name="ValoracionDisponibilidad" min="0" max="10" step="1" list="valoracionList">
+                <span asp-validation-for="ValoracionDisponibilidad" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="AssetThreats" class="control-label">Amenazas</label>
+                <div>
+                    @foreach (var threat in ViewBag.Threats as List<Threat>)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" name="selectedThreats" value="@threat.Id" class="form-check-input" />
+                            <label class="form-check-label">@threat.ThreatDescription</label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AssetVulnerabilities" class="control-label">Vulnerabilidades</label>
+                <div>
+                    @foreach (var vulnerability in ViewBag.Vulnerabilities as List<Vulnerability>)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" name="selectedVulnerabilities" value="@vulnerability.Id" class="form-check-input" />
+                            <label class="form-check-label">@vulnerability.VulnerabilityDescription</label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Manejar el evento de cambio en el campo de selección de categoría
+        $("#categoriaSelect").change(function () {
+            // Obtener el valor seleccionado de la categoría
+            var selectedCategoria = $(this).val();
+
+            // Obtener el elemento de selección de etiqueta principal
+            var etiquetaPrincipalSelect = $("#etiquetaPrincipalSelect");
+
+            // Limpiar las opciones actuales
+            etiquetaPrincipalSelect.empty();
+
+            // Añadir opciones según la categoría seleccionada
+            switch (selectedCategoria) {
+                case "arch":
+                    etiquetaPrincipalSelect.append('<option value="sap">[sap] punto de [acceso al] servicio</option>');
+                    etiquetaPrincipalSelect.append('<option value="ip">[ip] punto de interconexión</option>');
+                    etiquetaPrincipalSelect.append('<option value="ext">[ext] proporcionado por terceros</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+                case "D":
+                    etiquetaPrincipalSelect.append('<option value="files">[files] ficheros</option>');
+                    etiquetaPrincipalSelect.append('<option value="backup">[backup] copias de respaldo</option>');
+                    etiquetaPrincipalSelect.append('<option value="conf">[conf] datos de configuración</option>');
+                    etiquetaPrincipalSelect.append('<option value="password">[password] credenciales (ej. contraseñas)</option>');
+                    etiquetaPrincipalSelect.append('<option value="auth">[auth] datos de validación de credenciales, etc.</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "keys":
+                    etiquetaPrincipalSelect.append('<option value="info">[info] protección de la información</option>');
+                    etiquetaPrincipalSelect.append('<option value="encrypt">[encrypt] claves de cifra</option>');
+                    etiquetaPrincipalSelect.append('<option value="shared_secret">[shared_secret] secreto compartido</option>');
+                    etiquetaPrincipalSelect.append('<option value="public_encryption">[public_encryption] clave pública de cifra</option>');
+                    etiquetaPrincipalSelect.append('<option value="public_decryption">[public_decryption] clave privada de descifrado, etc.</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "S":
+                    etiquetaPrincipalSelect.append('<option value="anon">[anon] anónimo</option>');
+                    etiquetaPrincipalSelect.append('<option value="pub">[pub] al público en general</option>');
+                    etiquetaPrincipalSelect.append('<option value="ext">[ext] a usuarios externos</option>');
+                    etiquetaPrincipalSelect.append('<option value="www">[www] world wide web</option>');
+                    etiquetaPrincipalSelect.append('<option value="telnet">[telnet] acceso remoto a cuenta local</option>');
+                    etiquetaPrincipalSelect.append('<option value="email">[email] correo electrónico</option>');
+                    etiquetaPrincipalSelect.append('<option value="file">[file] almacenamiento de ficheros</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "SW":
+                    etiquetaPrincipalSelect.append('<option value="prp">[prp] desarrollo propio (in house)</option>');
+                    etiquetaPrincipalSelect.append('<option value="std">[std] estándar (off the shelf)</option>');
+                    etiquetaPrincipalSelect.append('<option value="browser">[browser] navegador web</option>');
+                    etiquetaPrincipalSelect.append('<option value="www">[www] servidor de presentación</option>');
+                    etiquetaPrincipalSelect.append('<option value="app">[app] servidor de aplicaciones</option>');
+                    etiquetaPrincipalSelect.append('<option value="email_client">[email_client] cliente de correo electrónico</option>');
+                    etiquetaPrincipalSelect.append('<option value="email_server">[email_server] servidor de correo electrónico</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "HW":
+                    etiquetaPrincipalSelect.append('<option value="host">[host] grandes equipos</option>');
+                    etiquetaPrincipalSelect.append('<option value="pc">[pc] informática personal</option>');
+                    etiquetaPrincipalSelect.append('<option value="mobile">[mobile] informática móvil</option>');
+                    etiquetaPrincipalSelect.append('<option value="pda">[pda] agendas electrónicas</option>');
+                    etiquetaPrincipalSelect.append('<option value="ipphone">[ipphone] teléfono IP</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "COM":
+                    etiquetaPrincipalSelect.append('<option value="wifi">[wifi] red inalámbrica</option>');
+                    etiquetaPrincipalSelect.append('<option value="mobile">[mobile] telefonía móvil</option>');
+                    etiquetaPrincipalSelect.append('<option value="sat">[sat] por satélite</option>');
+                    etiquetaPrincipalSelect.append('<option value="LAN">[LAN] red local</option>');
+                    etiquetaPrincipalSelect.append('<option value="MAN">[MAN] red metropolitana</option>');
+                    etiquetaPrincipalSelect.append('<option value="Internet">[Internet] Internet</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "Media":
+                    etiquetaPrincipalSelect.append('<option value="electronic">[electronic] electrónicos</option>');
+                    etiquetaPrincipalSelect.append('<option value="disk">[disk] discos</option>');
+                    etiquetaPrincipalSelect.append('<option value="vdisk">[vdisk] discos virtuales</option>');
+                    etiquetaPrincipalSelect.append('<option value="cd">[cd] cederrón (CD-ROM)</option>');
+                    etiquetaPrincipalSelect.append('<option value="usb">[usb] memorias USB</option>');
+                    etiquetaPrincipalSelect.append('<option value="dvd">[dvd] DVD</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "AUX":
+                    etiquetaPrincipalSelect.append('<option value="power">[power] fuentes de alimentación</option>');
+                    etiquetaPrincipalSelect.append('<option value="ups">[ups] sistemas de alimentación ininterrumpida</option>');
+                    etiquetaPrincipalSelect.append('<option value="gen">[gen] generadores eléctricos</option>');
+                    etiquetaPrincipalSelect.append('<option value="cabling">[cabling] cableado</option>');
+                    etiquetaPrincipalSelect.append('<option value="wire">[wire] cable eléctrico</option>');
+                    etiquetaPrincipalSelect.append('<option value="fiber">[fiber] fibra óptica</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "L":
+                    etiquetaPrincipalSelect.append('<option value="site">[site] recinto</option>');
+                    etiquetaPrincipalSelect.append('<option value="building">[building] edificio</option>');
+                    etiquetaPrincipalSelect.append('<option value="local">[local] cuarto</option>');
+                    etiquetaPrincipalSelect.append('<option value="mobile">[mobile] plataformas móviles</option>');
+                    etiquetaPrincipalSelect.append('<option value="car">[car] vehículo terrestre</option>');
+                    etiquetaPrincipalSelect.append('<option value="plane">[plane] vehículo aéreo: avión</option>');
+                    etiquetaPrincipalSelect.append('<option value="ship">[ship] vehículo marítimo</option>');
+                    etiquetaPrincipalSelect.append('<option value="shelter">[shelter] contenedores</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                case "P":
+                    etiquetaPrincipalSelect.append('<option value="ue">[ue] usuarios externos</option>');
+                    etiquetaPrincipalSelect.append('<option value="ui">[ui] usuarios internos</option>');
+                    etiquetaPrincipalSelect.append('<option value="op">[op] operadores</option>');
+                    etiquetaPrincipalSelect.append('<option value="adm">[adm] administradores de sistemas</option>');
+                    // Añadir más opciones según sea necesario
+                    break;
+
+                default:
+                    // Cualquier categoría no coincidente
+                    etiquetaPrincipalSelect.append('<option value="">-- Seleccione una opción --</option>');
+                    break;
+            }
+        });
+    });
+</script>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,54 @@
+﻿a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    color: #333; 
+}
+
+a {
+    color: #428bca; 
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #28a745; 
+    border-color: #218838; 
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #dc3545; /* Color de fondo de las píldoras activas */
+    border-color: #c82333; /* Color del borde de las píldoras activas */
+}
+
+.border-top {
+    border-top: 1px solid #ccc; /* Cambiar color del borde superior */
+}
+
+.border-bottom {
+    border-bottom: 1px solid #ccc; /* Cambiar color del borde inferior */
+}
+
+.box-shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Cambiar sombra de la caja */
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+    color: #fff;
+    background-color: #007bff; /* Color de fondo del botón de aceptar política */
+    border-color: #007bff; /* Color del borde del botón de aceptar política */
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color:lightgray; /* Color de fondo del pie de página */
+    height: 60px;
+    line-height: 60px;
+    color: #333; /* Color del texto del pie de página */
+}

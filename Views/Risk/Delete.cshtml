@@ -1,0 +1,38 @@
+﻿@model SecureAssetManager.Models.Risk
+
+@{
+    ViewData["Title"] = "Eliminar Evaluación de Riesgo";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>¿Estás seguro de que deseas eliminar esta evaluación de riesgo?</h4>
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <!-- Agrega más campos si es necesario -->
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Code" />
+
+        <div class="form-group">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-controller="Risk" asp-action="Index">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

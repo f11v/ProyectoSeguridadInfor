@@ -1,0 +1,213 @@
+﻿@model SecureAssetManager.Models.Threat
+
+@{
+    ViewData["Title"] = "Editar Amenaza";
+}
+
+<h1>Editar Amenaza</h1>
+
+<h4>Amenaza</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            
+            <div class="form-group">
+                <label asp-for="ThreatOrigin" class="control-label"></label>
+                <select asp-for="ThreatOrigin" class="form-control" id="ThreatOrigin">
+                    <option value="">-- Selecciona una opción --</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Industrial">Industrial</option>
+                    <option value="Errores y fallos no intencionados">Errores y fallos no intencionados</option>
+                    <option value="Ataques intencionados">Ataques intencionados</option>
+                </select>
+                <span asp-validation-for="ThreatOrigin" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ThreatDescription" class="control-label"></label>
+                <select asp-for="ThreatDescription" class="form-control" id="ThreatDescription">
+                    <option value="">-- Selecciona una opción --</option>
+                    <option value="Fuego">Fuego</option>
+                    <option value="Daños por agua">Daños por agua</option>
+                    <option value="Desastres naturales">Desastres naturales</option>
+                    <option value="Desastres industriales">Desastres industriales</option>
+                    <option value="Contaminación mecánica">Contaminación mecánica</option>
+                    <option value="Contaminación electromagnética">Contaminación electromagnética</option>
+                    <option value="Avería de origen físico o lógico">Avería de origen físico o lógico</option>
+                    <option value="Corte del suministro eléctrico">Corte del suministro eléctrico</option>
+                    <option value="Condiciones inadecuadas de temperatura o humedad">Condiciones inadecuadas de temperatura o humedad</option>
+                    <option value="Fallo de servicios de comunicaciones">Fallo de servicios de comunicaciones</option>
+                    <option value="Interrupción de otros servicios y suministros esenciales">Interrupción de otros servicios y suministros esenciales</option>
+                    <option value="Degradación de los soportes de almacenamiento de la información">Degradación de los soportes de almacenamiento de la información</option>
+                    <option value="Emanaciones electromagnéticas">Emanaciones electromagnéticas</option>
+                    <option value="Errores de los usuarios">Errores de los usuarios</option>
+                    <option value="Errores del administrador">Errores del administrador</option>
+                    <option value="Errores de monitorización (log)">Errores de monitorización (log)</option>
+                    <option value="Errores de configuración">Errores de configuración</option>
+                    <option value="Deficiencias en la organización">Deficiencias en la organización</option>
+                    <option value="Difusión de software dañino">Difusión de software dañino</option>
+                    <option value="[Re-]encaminamiento de mensajes">[Re-]encaminamiento de mensajes</option>
+                    <option value="Errores de secuencia">Errores de secuencia</option>
+                    <option value="Escapes de información">Escapes de información</option>
+                    <option value="Alteración accidental de la información">Alteración accidental de la información</option>
+                    <option value="Destrucción de información">Destrucción de información</option>
+                    <option value="Fugas de información">Fugas de información</option>
+                    <option value="Vulnerabilidades de los programas (software)">Vulnerabilidades de los programas (software)</option>
+                    <option value="Errores de mantenimiento / actualización de programas (software)">Errores de mantenimiento / actualización de programas (software)</option>
+                    <option value="Errores de mantenimiento / actualización de equipos (hardware)">Errores de mantenimiento / actualización de equipos (hardware)</option>
+                    <option value="Caída del sistema por agotamiento de recursos">Caída del sistema por agotamiento de recursos</option>
+                    <option value="Pérdida de equipos">Pérdida de equipos</option>
+                    <option value="Indisponibilidad del personal">Indisponibilidad del personal</option>
+                    <option value="Manipulación de los registros de actividad (log)">Manipulación de los registros de actividad (log)</option>
+                    <option value="Manipulación de la configuración">Manipulación de la configuración</option>
+                    <option value="Suplantación de la identidad del usuario">Suplantación de la identidad del usuario</option>
+                    <option value="Abuso de privilegios de acceso">Abuso de privilegios de acceso</option>
+                    <option value="Uso no previsto">Uso no previsto</option>
+                    <option value="Difusión de software dañino">Difusión de software dañino</option>
+                    <option value="[Re-]encaminamiento de mensajes">[Re-]encaminamiento de mensajes</option>
+                    <option value="Alteración de secuencia">Alteración de secuencia</option>
+                    <option value="Acceso no autorizado">Acceso no autorizado</option>
+                    <option value="Análisis de tráfico">Análisis de tráfico</option>
+                    <option value="Repudio">Repudio</option>
+                    <option value="Interceptación de información (escucha)">Interceptación de información (escucha)</option>
+                    <option value="Modificación deliberada de la información">Modificación deliberada de la información</option>
+                    <option value="Destrucción de información">Destrucción de información</option>
+                    <option value="Divulgación de información">Divulgación de información</option>
+                    <option value="Manipulación de programas">Manipulación de programas</option>
+                    <option value="Manipulación de los equipos">Manipulación de los equipos</option>
+                    <option value="Denegación de servicio">Denegación de servicio</option>
+                    <option value="Robo">Robo</option>
+                    <option value="Ataque destructivo">Ataque destructivo</option>
+                    <option value="Ocupación enemiga">Ocupación enemiga</option>
+                    <option value="Indisponibilidad del personal">Indisponibilidad del personal</option>
+                    <option value="Extorsión">Extorsión</option>
+                    <option value="Ingeniería social (picaresca)">Ingeniería social (picaresca)</option>
+                </select>
+                <span asp-validation-for="ThreatDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Degradation" class="control-label"></label>
+                <select asp-for="Degradation" class="form-control">
+                    <option value="">-- Selecciona una opción --</option>
+                    <option value="3">Totalmente degradado</option>
+                    <option value="2">Degradación leve</option>
+                    <option value="1">Degradado en una pequeña fracción</option>
+                </select>
+                <span asp-validation-for="Degradation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Probability" class="control-label"></label>
+                <input asp-for="Probability" class="form-control" />
+                <span asp-validation-for="Probability" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+
+            <div>
+                <a asp-action="Index">Volver a la lista</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#ThreatOrigin").change(function () {
+            var selectedThreatOrigin = $(this).val();
+            var selectedThreatDescription = $("#ThreatDescription");
+
+            var existingThreatDescription = "@Model.ThreatDescription";
+            $("#ThreatDescription").val(existingThreatDescription);
+
+            selectedThreatDescription.empty();
+
+            switch (selectedThreatOrigin) {
+                case "Natural":
+                    selectedThreatDescription.append('<option value="Fuego">Fuego</option>');
+                    selectedThreatDescription.append('<option value="Daños por agua">Daños por agua</option>');
+                    selectedThreatDescription.append('<option value="Desastres industriales">Desastres industriales</option>');
+                    break;
+
+                case "Industrial":
+                    selectedThreatDescription.append('<option value="Fuego">Fuego</option>');
+                    selectedThreatDescription.append('<option value="Daños por agua">Daños por agua</option>');
+                    selectedThreatDescription.append('<option value="Contaminación mecánica">Contaminación mecánica</option>');
+                    selectedThreatDescription.append('<option value="Contaminación electromagnética">Contaminación electromagnética</option>');
+                    selectedThreatDescription.append('<option value="Avería de origen físico o lógico">Avería de origen físico o lógico</option>');
+                    selectedThreatDescription.append('<option value="Corte del suministro eléctrico">Corte del suministro eléctrico</option>');
+                    selectedThreatDescription.append('<option value="Condiciones inadecuadas de temperatura o humedad">Condiciones inadecuadas de temperatura o humedad</option>');
+                    selectedThreatDescription.append('<option value="Fallo de servicios de comunicaciones">Fallo de servicios de comunicaciones</option>');
+                    selectedThreatDescription.append('<option value="Interrupción de otros servicios y suministros esenciales">Interrupción de otros servicios y suministros esenciales</option>');
+                    selectedThreatDescription.append('<option value="Degradación de los soportes de almacenamiento de la información">Degradación de los soportes de almacenamiento de la información</option>');
+                    selectedThreatDescription.append('<option value="Emanaciones electromagnéticas">Emanaciones electromagnéticas</option>');
+                    break;
+
+                case "Errores y fallos no intencionados":
+                    selectedThreatDescription.append('<option value="Errores de los usuarios">Errores de los usuarios</option>');
+                    selectedThreatDescription.append('<option value="Errores del administrador">Errores del administrador</option>');
+                    selectedThreatDescription.append('<option value="Errores de monitorización (log)">Errores de monitorización (log)</option>');
+                    selectedThreatDescription.append('<option value="Errores de configuración">Errores de configuración</option>');
+                    selectedThreatDescription.append('<option value="Deficiencias en la organización">Deficiencias en la organización</option>');
+                    selectedThreatDescription.append('<option value="Difusión de software dañino">Difusión de software dañino</option>');
+                    selectedThreatDescription.append('<option value="[Re-]encaminamiento de mensajes">[Re-]encaminamiento de mensajes</option>');
+                    selectedThreatDescription.append('<option value="Errores de secuencia">Errores de secuencia</option>');
+                    selectedThreatDescription.append('<option value="Escapes de información">Escapes de información</option>');
+                    selectedThreatDescription.append('<option value="Alteración accidental de la información">Alteración accidental de la información</option>');
+                    selectedThreatDescription.append('<option value="Destrucción de información">Destrucción de información</option>');
+                    selectedThreatDescription.append('<option value="Fugas de información">Fugas de información</option>');
+                    selectedThreatDescription.append('<option value="Vulnerabilidades de los programas (software)">Vulnerabilidades de los programas (software)</option>');
+                    selectedThreatDescription.append('<option value="Errores de mantenimiento / actualización de programas (software)">Errores de mantenimiento / actualización de programas (software)</option>');
+                    selectedThreatDescription.append('<option value="Errores de mantenimiento / actualización de equipos (hardware)">Errores de mantenimiento / actualización de equipos (hardware)</option>');
+                    selectedThreatDescription.append('<option value="Caída del sistema por agotamiento de recursos">Caída del sistema por agotamiento de recursos</option>');
+                    selectedThreatDescription.append('<option value="Pérdida de equipos">Pérdida de equipos</option>');
+                    selectedThreatDescription.append('<option value="Indisponibilidad del personal">Indisponibilidad del personal</option>');
+                    break;
+                case "Ataques intencionados":
+                    selectedThreatDescription.append('<option value="Manipulación de los registros de actividad (log)">Manipulación de los registros de actividad (log)</option>');
+                    selectedThreatDescription.append('<option value="Manipulación de la configuración">Manipulación de la configuración</option>');
+                    selectedThreatDescription.append('<option value="Suplantación de la identidad del usuario">Suplantación de la identidad del usuario</option>');
+                    selectedThreatDescription.append('<option value="Abuso de privilegios de acceso">Abuso de privilegios de acceso</option>');
+                    selectedThreatDescription.append('<option value="Uso no previsto">Uso no previsto</option>');
+                    selectedThreatDescription.append('<option value="Difusión de software dañino">Difusión de software dañino</option>');
+                    selectedThreatDescription.append('<option value="[Re-]encaminamiento de mensajes">[Re-]encaminamiento de mensajes</option>');
+                    selectedThreatDescription.append('<option value="Alteración de secuencia">Alteración de secuencia</option>');
+                    selectedThreatDescription.append('<option value="Acceso no autorizado">Acceso no autorizado</option>');
+                    selectedThreatDescription.append('<option value="Análisis de tráfico">Análisis de tráfico</option>');
+                    selectedThreatDescription.append('<option value="Repudio">Repudio</option>');
+                    selectedThreatDescription.append('<option value="Interceptación de información (escucha)">Interceptación de información (escucha)</option>');
+                    selectedThreatDescription.append('<option value="Modificación deliberada de la información">Modificación deliberada de la información</option>');
+                    selectedThreatDescription.append('<option value="Destrucción de información">Destrucción de información</option>');
+                    selectedThreatDescription.append('<option value="Divulgación de información">Divulgación de información</option>');
+                    selectedThreatDescription.append('<option value="Manipulación de programas">Manipulación de programas</option>');
+                    selectedThreatDescription.append('<option value="Manipulación de los equipos">Manipulación de los equipos</option>');
+                    selectedThreatDescription.append('<option value="Denegación de servicio">Denegación de servicio</option>');
+                    selectedThreatDescription.append('<option value="Robo">Robo</option>');
+                    selectedThreatDescription.append('<option value="Ataque destructivo">Ataque destructivo</option>');
+                    selectedThreatDescription.append('<option value="Ocupación enemiga">Ocupación enemiga</option>');
+                    selectedThreatDescription.append('<option value="Indisponibilidad del personal">Indisponibilidad del personal</option>');
+                    selectedThreatDescription.append('<option value="Extorsión">Extorsión</option>');
+                    selectedThreatDescription.append('<option value="Ingeniería social (picaresca)">Ingeniería social (picaresca)</option>');
+                    break;
+                default:
+                    selectedThreatDescription.append('<option value="">-- Selecciona una opción --</option>');
+            }
+
+        });
+    });
+</script>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

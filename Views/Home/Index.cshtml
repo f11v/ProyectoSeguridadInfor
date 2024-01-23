@@ -1,0 +1,205 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<SecureAssetManager.Models.Asset>
+
+<style>
+    .btn-custom {
+        color: black;
+</style>
+
+<h2>Lista de Activos</h2>
+<h2></h2>
+
+<a href="@Url.Action("Create", "Asset")" class="btn btn-custom">Crear Activo</a>
+<h2></h2>
+
+<table id="assetTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Código de Activo</th>
+            <th>Nombre</th>
+            <th>Responsable</th>
+            <th>Ubicación</th>
+            <th>Valoracion</th>
+            <th>Tipo</th>
+            <th>Categoría</th>
+            <th>Clasificación</th>
+            <th>Etiqueta Principal</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asset in Model)
+        {
+            <tr>
+                <td>@asset.CodigoActivo</td>
+                <td>@asset.Nombre</td>
+                <td>@asset.Responsable</td>
+                <td>@asset.Ubicacion</td>
+                <td>@asset.Descripcion</td>
+                <td>@asset.Tipo</td>
+                <td>@asset.Categoria</td>
+                <td>@asset.Clasificacion</td>
+                <td>@asset.EtiquetaPrincipal</td>
+                <td>
+                    <a href="@Url.Action("Details", "Asset", new { id = asset.ID })" class="btn btn-custom">Detalles</a>
+                    <a href="@Url.Action("Edit", "Asset", new { id = asset.ID })" class="btn btn-custom">Editar</a>
+                    <a href="@Url.Action("Delete", "Asset", new { id = asset.ID })" class="btn btn-custom">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#assetTable').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>División en Dos Columnas</title>
+</head>
+<body>
+
+    <div class="row">
+        <div class="column">
+            <hr />
+            <h3>Instructivo de categorización:</h3>
+            <hr />
+            <h3>[arch] Arquitectura del sistema:</h3>
+            <ul>
+                <li>[sap] punto de [acceso al] servicio.</li>
+                <li>[ip] punto de interconexión.</li>
+                <li>[ext] proporcionado por terceros.</li>
+            </ul>
+            <h3>[D] Datos / Información:</h3>
+            <ul>
+                <li>[files] ficheros.</li>
+                <li>[backup] copias de respaldo.</li>
+                <li>[conf] datos de configuración.</li>
+                <li>[password] credenciales (ej. contraseñas).</li>
+                <li>[auth] datos de validación de credenciales, etc.</li>
+            </ul>
+            <h3>[keys] Claves criptográficas:</h3>
+            <ul>
+                <li>[info] protección de la información.</li>
+                <li>[encrypt] claves de cifra.</li>
+                <li>[shared_secret] secreto compartido.</li>
+                <li>[public_encryption] clave pública de cifra.</li>
+                <li>[public_decryption] clave privada de descifrado, etc.</li>
+            </ul>
+            <h3>[S] Servicios:</h3>
+            <ul>
+                <li>[anon] anónimo.</li>
+                <li>[pub] al público en general.</li>
+                <li>[ext] a usuarios externos.</li>
+                <li>[www] world wide web.</li>
+                <li>[telnet] acceso remoto a cuenta local.</li>
+                <li>[email] correo electrónico.</li>
+                <li>[file] almacenamiento de ficheros, etc.</li>
+            </ul>
+
+            <h3>[SW] Aplicaciones (software):</h3>
+            <ul>
+                <li>[prp] desarrollo propio (in house).</li>
+                <li>[std] estándar (off the shelf).</li>
+                <li>[browser] navegador web.</li>
+                <li>[www] servidor de presentación.</li>
+                <li>[app] servidor de aplicaciones.</li>
+                <li>[email_client] cliente de correo electrónico.</li>
+                <li>[email_server] servidor de correo electrónico, entre otros.</li>
+            </ul>
+            <h3>[HW] Equipamiento informático (hardware):</h3>
+            <ul>
+                <li>[host] grandes equipos.</li>
+                <li>[pc] informática personal.</li>
+                <li>[mobile] informática móvil.</li>
+                <li>[pda] agendas electrónicas.</li>
+                <li>[ipphone] teléfono IP, entre otros.</li>
+            </ul>
+
+                    </div>
+
+        <div class="column">
+            <p>    ‎             </p>
+            <p>    ‎             </p>
+            <p>    ‎             </p>
+            <h3>[COM] Redes de comunicaciones:</h3>
+            <ul>
+                <li>[wifi] red inalámbrica.</li>
+                <li>[mobile] telefonía móvil.</li>
+                <li>[sat] por satélite.</li>
+                <li>[LAN] red local.</li>
+                <li>[MAN] red metropolitana.</li>
+                <li>[Internet] Internet, etc.</li>
+            </ul>
+            <h3>[Media] Soportes de información:</h3>
+            <ul>
+                <li>[electronic] electrónicos.</li>
+                <li>[disk] discos.</li>
+                <li>[vdisk] discos virtuales.</li>
+                <li>[cd] cederrón (CD-ROM).</li>
+                <li>[usb] memorias USB.</li>
+                <li>[dvd] DVD, entre otros.</li>
+            </ul>
+            <h3>[AUX] Equipamiento auxiliar:</h3>
+            <ul>
+                <li>[power] fuentes de alimentación.</li>
+                <li>[ups] sistemas de alimentación ininterrumpida.</li>
+                <li>[gen] generadores eléctricos.</li>
+                <li>[cabling] cableado.</li>
+                <li>[wire] cable eléctrico.</li>
+                <li>[fiber] fibra óptica, etc.</li>
+            </ul>
+            <h3>[L] Instalaciones:</h3>
+            <ul>
+                <li>[site] recinto.</li>
+                <li>[building] edificio.</li>
+                <li>[local] cuarto.</li>
+                <li>[mobile] plataformas móviles.</li>
+                <li>[car] vehículo terrestre.</li>
+                <li>[plane] vehículo aéreo: avión.</li>
+                <li>[ship] vehículo marítimo.</li>
+                <li>[shelter] contenedores, etc.</li>
+            </ul>
+            <h3>[P] Personal:</h3>
+            <ul>
+                <li>[ue] usuarios externos.</li>
+                <li>[ui] usuarios internos.</li>
+                <li>[op] operadores.</li>
+                <li>[adm] administradores de sistemas, entre otros.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
+
+}
